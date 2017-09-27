@@ -7,12 +7,18 @@ import (
 	"github.com/goline/tools"
 )
 
+func NewSha256(saltLength int) Authenticator {
+	return &Sha256Authenticator{
+		saltLength: saltLength,
+	}
+}
+
 type Sha256Authenticator struct {
-	SaltLength int
+	saltLength int
 }
 
 func (a *Sha256Authenticator) Generate(password string) (string, string) {
-	salt := tools.Random(a.SaltLength)
+	salt := tools.Random(a.saltLength)
 	hasher := sha256.New()
 	hasher.Write([]byte(password))
 	hasher.Write([]byte(salt))
