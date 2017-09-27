@@ -5,6 +5,7 @@ import (
 	"strings"
 
 	"github.com/goline/tools"
+	"fmt"
 )
 
 func NewSha256(saltLength int) Authenticator {
@@ -22,7 +23,7 @@ func (a *Sha256Authenticator) Generate(password string) (string, string) {
 	hasher := sha256.New()
 	hasher.Write([]byte(password))
 	hasher.Write([]byte(salt))
-	return string(hasher.Sum(nil)), salt
+	return fmt.Sprintf("%x", hasher.Sum(nil)), salt
 }
 
 func (a *Sha256Authenticator) Verify(password string, salt string, hashed_password string) bool {
@@ -30,7 +31,7 @@ func (a *Sha256Authenticator) Verify(password string, salt string, hashed_passwo
 	hasher.Write([]byte(password))
 	hasher.Write([]byte(salt))
 
-	if strings.Compare(string(hasher.Sum(nil)), hashed_password) == 0 {
+	if strings.Compare(fmt.Sprintf("%x", hasher.Sum(nil)), hashed_password) == 0 {
 		return true
 	}
 

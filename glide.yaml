@@ -1,3 +1,8 @@
 package: github.com/goline/auth
 import:
 - package: github.com/goline/tools
+testImport:
+- package: github.com/onsi/ginkgo
+  version: ~1.4.0
+- package: github.com/onsi/gomega
+  version: ~1.2.0

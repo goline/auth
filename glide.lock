@@ -1,6 +1,16 @@
-hash: 61894c084d730b45b518482d4618fc08fb53c9ac15061bb48e6704c7640c2c50
-updated: 2017-09-27T10:00:31.227003991+07:00
+hash: b8c77132d8a734e509e4bf707b8b39d04432a9e43e7ea56be1f385982dcd5826
+updated: 2017-09-27T10:58:34.789573846+07:00
 imports:
+- name: github.com/go-ini/ini
+  version: 20b96f641a5ea98f2f8619ff4f3e061cff4833bd
+- name: github.com/goline/errors
+  version: b2371c4c8b19799de259df6fde97621d1b42a059
 - name: github.com/goline/tools
   version: c73605d8db4b64176df17421979f69a5d6f8041c
-testImports: []
+- name: github.com/onsi/gomega
+  version: c893efa28eb45626cdaa76c9f653b62488858837
+- name: github.com/pkg/errors
+  version: 645ef00459ed84a119197bfb8d8205042c6df63d
+testImports:
+- name: github.com/onsi/ginkgo
+  version: 9eda700730cba42af70d53180f9dcce9266bc2bc
