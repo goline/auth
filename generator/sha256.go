@@ -1,4 +1,4 @@
-package auth
+package generator
 
 import (
 	"crypto/sha256"
@@ -8,17 +8,17 @@ import (
 	"github.com/goline/tools"
 )
 
-func NewSha256(saltLength int) PasswordGenerator {
-	return &Sha256Authenticator{
+func NewSha256(saltLength int) *Sha256PasswordGenerator {
+	return &Sha256PasswordGenerator{
 		saltLength: saltLength,
 	}
 }
 
-type Sha256Authenticator struct {
+type Sha256PasswordGenerator struct {
 	saltLength int
 }
 
-func (a *Sha256Authenticator) Generate(password string) (string, string) {
+func (a *Sha256PasswordGenerator) Generate(password string) (string, string) {
 	salt := tools.Random(a.saltLength)
 	hasher := sha256.New()
 	hasher.Write([]byte(password))
@@ -26,7 +26,7 @@ func (a *Sha256Authenticator) Generate(password string) (string, string) {
 	return fmt.Sprintf("%x", hasher.Sum(nil)), salt
 }
 
-func (a *Sha256Authenticator) Verify(password string, salt string, hashed_password string) bool {
+func (a *Sha256PasswordGenerator) Verify(password string, salt string, hashed_password string) bool {
 	hasher := sha256.New()
 	hasher.Write([]byte(password))
 	hasher.Write([]byte(salt))
