@@ -1,6 +1,6 @@
 package auth
 
-type Authenticator interface {
+type PasswordGenerator interface {
 	// Generate creates a hashed password and salt as output
 	Generate(password string) (string, string)
 

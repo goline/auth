@@ -2,13 +2,13 @@ package auth
 
 import (
 	"crypto/sha256"
+	"fmt"
 	"strings"
 
 	"github.com/goline/tools"
-	"fmt"
 )
 
-func NewSha256(saltLength int) Authenticator {
+func NewSha256(saltLength int) PasswordGenerator {
 	return &Sha256Authenticator{
 		saltLength: saltLength,
 	}
